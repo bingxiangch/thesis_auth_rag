@@ -46,7 +46,7 @@ def chunks_retrieval(request: Request, body: ChunksBody) -> list[Source]:
     """
     service = request.state.injector.get(ChunksService)
     results = service.retrieve_relevant(
-        text=body.text, limit=20, prev_next_chunks=0
+        text=body.text, limit=6, prev_next_chunks=0
     )
     sources = Source.curate_sources(results)
 
