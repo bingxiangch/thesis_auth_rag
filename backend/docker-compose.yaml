@@ -1,0 +1,17 @@
+services:
+  private-gpt:
+    build:
+      dockerfile: Dockerfile.local
+    volumes:
+      - ./local_data/:/home/worker/app/local_data
+      - ./models/:/home/worker/app/models
+      - ./sqlite.db:/home/worker/app/sqlite.db
+    command: ["chmod", "ugo+rw", "/home/worker/app/sqlite.db"]
+
+    ports:
+      - 8001:8080
+    environment:
+      PORT: 8080
+      PGPT_PROFILES: docker
+      PGPT_MODE: local
+
