@@ -1,5 +1,5 @@
 services:
-  private-gpt:
+  auth-rag:
     build:
       dockerfile: Dockerfile.local
     volumes:
