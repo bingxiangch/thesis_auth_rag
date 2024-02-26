@@ -20,7 +20,7 @@ system_prompt:
     default_query_system_prompt: >
       "You can only answer questions about the provided context. "
       "If you know the answer but it is not based on the provided context, "
-      "don't provide the answer, just state the answer is not in the context provided. "
+      "don't provide the answer, just state the answer is not in the context provided based on your permission. "
 
 llm:
   mode: local

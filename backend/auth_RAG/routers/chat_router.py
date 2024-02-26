@@ -70,6 +70,11 @@ def get_access_level(session: Session, user: User, doc_id: str) -> int:
 
     return query_result[0] if query_result else None
 
+def get_username_by_access_level(session: Session, access_level: int) -> str:
+    # Query the database to get the username based on the access level
+    user = session.query(User).filter(User.access_level == access_level).first()
+
+    return user.username if user else None
 
 class Message(BaseModel):
     """Inference result, with the source of the message.
@@ -132,14 +137,14 @@ def prompt_completion(
 
     accessible_doc_ids = get_accessible_doc_ids(db, current_user, doc_id_set_ordered)
     unaccessible_doc_ids = [doc_id for doc_id in doc_id_set_ordered if doc_id not in accessible_doc_ids]
- 
     default_system_prompt = settings().system_prompt.default_query_system_prompt
     # Check if there are unaccessible documents before trying to access the first one
     if unaccessible_doc_ids:
         # Get the access level of the first unaccessible document
         access_level_of_first_doc = get_access_level(db, current_user, unaccessible_doc_ids[0])
+        username = get_username_by_access_level(db, access_level_of_first_doc)
         # Additional information to be appended
-        additional_info = f"Additionally, suggest the user ask the users with access level {access_level_of_first_doc} for help if the information is not within the current context."
+        additional_info = f"Additionally, clearly state that the user can ask {username} who has permission {access_level_of_first_doc} for help if the information is not within the current context."
         # Append the additional information to the system prompt
         default_system_prompt += additional_info
     messages = [Message(content=body.prompt, role="user")]
