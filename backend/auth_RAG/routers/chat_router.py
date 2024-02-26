@@ -129,7 +129,7 @@ def prompt_completion(
     relevant_chunks = chunks_service.retrieve_relevant(
         text=body.prompt, limit=6, prev_next_chunks=0
     )
-    filtered_chunks = [chunk for chunk in relevant_chunks if getattr(chunk, 'score', 0) > 0.5]
+    filtered_chunks = [chunk for chunk in relevant_chunks if getattr(chunk, 'score', 0) > 0.45]
 
     # Extract unique doc_ids
     doc_id_set_ordered = list(OrderedDict.fromkeys(chunk.document.doc_id for chunk in filtered_chunks))
