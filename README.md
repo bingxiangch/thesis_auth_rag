@@ -17,7 +17,7 @@ docker-compose build
 
 3. Run setup in service script to download local models
 ```bash
-docker compose run --rm --entrypoint="bash -c '[ -f backend/scripts/setup ] && backend/scripts/setup'" auth_RAG
+docker compose run --rm --entrypoint="bash -c '[ -f backend/scripts/setup ] && backend/scripts/setup'" backend
 ```
 4. Run the service:
 ```bash

@@ -1,12 +1,11 @@
 services:
-  auth-rag:
+  backend:
     build:
-      dockerfile: Dockerfile.local
+      dockerfile: Dockerfile
     volumes:
       - ./local_data/:/home/worker/app/local_data
       - ./models/:/home/worker/app/models
       - ./sqlite.db:/home/worker/app/sqlite.db
-    command: ["chmod", "ugo+rw", "/home/worker/app/sqlite.db"]
 
     ports:
       - 8001:8080
