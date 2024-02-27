@@ -1,7 +1,35 @@
 # Authorization-Based Data Access for RAG-Enabled Generative AI (On-Premises)
 
 ## Description
-This project introduces a demo application that showcases the integration of access control mechanisms and retrieval augmented generation (RAG) for a Generative AI system dealing with substance data.
+This project introduces a demo application that showcases the integration of access control mechanisms and retrieval augmented generation (RAG) for a Generative AI system dealing with substance data. xxxx
+
+
+## Usage Instructions
+
+After a successful installation and launch of the project, follow the steps below to explore and interact with the system:
+
+**1. Login Credentials:**
+   - **Username:** root
+   - **Password:** root
+
+**2. System Features:**
+   - **User Management:** Access and manage user accounts.
+   - **Knowledge Management:** manage knowledge base and permissions.
+   - **Chat with System:** Engage in conversations with the system for information retrieval.
+
+**3. Pre-Loaded Knowledge based:**
+   - The system comes pre-loaded with three health profiles related to heart issues:
+     - **Ava Thompson:** Valvular Heart Disease (*Ava Thompson - Valvular Heart Disease.docx*)
+     - **Ethan Rodriguez:** Diseased Heart Muscle (Cardiomyopathy) (*Ethan Rodriguez - Diseased Heart Muscle (Cardiomyopathy).docx*)
+     - **Olivia Turner:** Congenital Heart Defects (*Olivia Turner - Congenital Heart Defects.docx*)
+
+**4. Example Questions:**
+
+     - What symptoms does Ava Thompson have?
+     - What symptoms does Olivia Turner have?
+     - What symptoms do Ava Thompson and Olivia Turner have?
+
+
 
 ## Installation
 ### Docker Installation
@@ -45,7 +73,14 @@ The server will be accessible at http://localhost:3000.
 
 #### Backend
 *Prerequisites:* python3.11, macOS or Linux system
-
+#### quickstart in few lines: 
+```bash
+cd backend && python3.11 -m venv .venv && source .venv/bin/activate && \
+pip install --upgrade pip poetry && poetry install --with local && poetry install --extras chroma && ./scripts/setup
+#Laucn the server
+poetry run python3.11 -m auth_RAG
+```
+#### Step-by-Step Setup:
 1. Navigate to backend directory
 ```bash
 cd backend
