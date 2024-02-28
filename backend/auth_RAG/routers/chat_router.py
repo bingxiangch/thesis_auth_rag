@@ -129,7 +129,7 @@ def prompt_completion(
     relevant_chunks = chunks_service.retrieve_relevant(
         text=body.prompt, limit=10, prev_next_chunks=0
     )
-    filtered_chunks = [chunk for chunk in relevant_chunks if getattr(chunk, 'score', 0) > 0.4]
+    filtered_chunks = [chunk for chunk in relevant_chunks if getattr(chunk, 'score', 0) > 0.45]
 
     # Extract unique doc_ids
     doc_id_set_ordered = list(OrderedDict.fromkeys(chunk.document.doc_id for chunk in filtered_chunks))
@@ -153,7 +153,6 @@ def prompt_completion(
         messages.insert(0, Message(content=body.system_prompt, role="system"))
     else:
         messages.insert(0, Message(content=default_system_prompt, role="system"))
-
     service = request.state.injector.get(ChatService)
     
     docs_filter = ContextFilter(docs_ids = accessible_doc_ids)
