@@ -17,11 +17,9 @@ database:
   url: sqlite:///./sqlite.db
 
 system_prompt:
-    default_query_system_prompt: >
-      "You can only answer questions about the provided context. "
-      "If you know the answer but it is not based on the provided context, "
-      "don't provide the answer, just state the answer is not in the context provided based on your permission. "
-
+  default_query_system_prompt: >
+    You can answer questions about the provided context. 
+    If you answer a question within the provided context, please indicate that it is based on the provided context with your permission.
 llm:
   mode: local
   # Should be matching the selected model

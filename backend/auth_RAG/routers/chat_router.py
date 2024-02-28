@@ -40,7 +40,7 @@ def get_accessible_doc_ids(session: Session, user: User, doc_ids: list) -> list:
     query_result = (
         session.query(FileDoc.doc_id)
         .join(File, File.id == FileDoc.file_id)
-        .filter(FileDoc.doc_id.in_(doc_ids), File.access_level == user.access_level)
+        .filter(FileDoc.doc_id.in_(doc_ids), File.access_level >= user.access_level)
         .all()
     )
 
@@ -55,7 +55,7 @@ def has_access_to_doc(session: Session, user: User, doc_id: str) -> bool:
     query_result = (
         session.query(FileDoc)
         .join(File, File.id == FileDoc.file_id)
-        .filter(FileDoc.doc_id == doc_id, File.access_level == user.access_level)
+        .filter(FileDoc.doc_id == doc_id, File.access_level >= user.access_level)
         .first()
     )
     return query_result is not None
@@ -127,9 +127,9 @@ def prompt_completion(
 
     chunks_service = request.state.injector.get(ChunksService)
     relevant_chunks = chunks_service.retrieve_relevant(
-        text=body.prompt, limit=6, prev_next_chunks=0
+        text=body.prompt, limit=10, prev_next_chunks=0
     )
-    filtered_chunks = [chunk for chunk in relevant_chunks if getattr(chunk, 'score', 0) > 0.45]
+    filtered_chunks = [chunk for chunk in relevant_chunks if getattr(chunk, 'score', 0) > 0.4]
 
     # Extract unique doc_ids
     doc_id_set_ordered = list(OrderedDict.fromkeys(chunk.document.doc_id for chunk in filtered_chunks))
@@ -144,7 +144,7 @@ def prompt_completion(
         access_level_of_first_doc = get_access_level(db, current_user, unaccessible_doc_ids[0])
         username = get_username_by_access_level(db, access_level_of_first_doc)
         # Additional information to be appended
-        additional_info = f"Additionally, clearly state that the user can ask {username} who has permission {access_level_of_first_doc} for help if the information is not within the current context."
+        additional_info = f"Additionally, clearly state that the user can ask {username} who has access level {access_level_of_first_doc} permission for getting other information."
         # Append the additional information to the system prompt
         default_system_prompt += additional_info
     messages = [Message(content=body.prompt, role="user")]
