@@ -18,8 +18,7 @@ database:
 
 system_prompt:
   default_query_system_prompt: >
-    You can answer questions about the provided context. 
-    If you answer a question within the provided context, please indicate that it is based on the provided context with your permission.
+    As an intelligent assistant, your role is to assist users in asking questions about patient profiles. Each source is associated with a specific user name. Please ensure that your answers to patient questions are based on the respective user's name.
 llm:
   mode: local
   # Should be matching the selected model

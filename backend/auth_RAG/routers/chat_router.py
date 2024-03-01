@@ -127,7 +127,7 @@ def prompt_completion(
 
     chunks_service = request.state.injector.get(ChunksService)
     relevant_chunks = chunks_service.retrieve_relevant(
-        text=body.prompt, limit=10, prev_next_chunks=0
+        text=body.prompt, limit=6, prev_next_chunks=0
     )
     filtered_chunks = [chunk for chunk in relevant_chunks if getattr(chunk, 'score', 0) > 0.45]
 
@@ -137,14 +137,14 @@ def prompt_completion(
 
     accessible_doc_ids = get_accessible_doc_ids(db, current_user, doc_id_set_ordered)
     unaccessible_doc_ids = [doc_id for doc_id in doc_id_set_ordered if doc_id not in accessible_doc_ids]
-    default_system_prompt = settings().system_prompt.default_query_system_prompt
+    default_system_prompt = settings().system_prompt.default_query_system_prompt.rstrip('\n')
     # Check if there are unaccessible documents before trying to access the first one
     if unaccessible_doc_ids:
         # Get the access level of the first unaccessible document
         access_level_of_first_doc = get_access_level(db, current_user, unaccessible_doc_ids[0])
         username = get_username_by_access_level(db, access_level_of_first_doc)
         # Additional information to be appended
-        additional_info = f"Additionally, clearly state that the user can ask {username} who has access level {access_level_of_first_doc} permission for getting other information."
+        additional_info = f" Additionally, clearly state that the user can ask {username} who has access level {access_level_of_first_doc} permission for getting other information."
         # Append the additional information to the system prompt
         default_system_prompt += additional_info
     messages = [Message(content=body.prompt, role="user")]
@@ -154,7 +154,6 @@ def prompt_completion(
     else:
         messages.insert(0, Message(content=default_system_prompt, role="system"))
     service = request.state.injector.get(ChatService)
-    
     docs_filter = ContextFilter(docs_ids = accessible_doc_ids)
 
     completion = service.chat(
