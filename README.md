@@ -19,15 +19,60 @@ After a successful installation and launch of the project, follow the steps belo
 
 **3. Pre-Loaded Knowledge based:**
    - The system comes pre-loaded with three health profiles related to heart issues:
-     - **Ava Thompson:** Valvular Heart Disease (*Ava Thompson - Valvular Heart Disease.docx*)
-     - **Ethan Rodriguez:** Diseased Heart Muscle (Cardiomyopathy) (*Ethan Rodriguez - Diseased Heart Muscle (Cardiomyopathy).docx*)
-     - **Olivia Turner:** Congenital Heart Defects (*Olivia Turner - Congenital Heart Defects.docx*)
+     - Alex Smith.docx
+     - Mark Lee.docx
+     - Sarah Davis.docx
 
 **4. Example Questions:**
 
-     - What symptoms does Ava Thompson have?
-     - What symptoms does Olivia Turner have?
-     - What symptoms do Ava Thompson and Olivia Turner have?
+     - what symptoms does Alex Smith have?
+     - what symptoms do Alex Smith and Mark Lee have
+     - List all patients in the context
+
+### Local Installation
+If you want to run the application in your machine without using Docker, follw these steps:
+
+*Prerequisites:* python3.11, macOS or Linux system, Node.js and npm
+### Quickstart
+1. Clone the project and navigate to project-folder
+```bash
+git clone https://github.com/bingxiangch/thesis_auth_rag.git
+cd thesis_auth_rag
+```
+2. Run the Setup Script:
+```bash
+chmod +x setup_and_run.sh
+./setup_and_run.sh
+```
+
+### Step-by-Step Setup:
+#### Backend
+*Prerequisites:* python3.11, macOS or Linux system
+1. Backend Setup, you need to navigate to project folder first(thesis_auth_rag):
+```bash
+cd backend && python3.11 -m venv .venv && source .venv/bin/activate && \
+pip install --upgrade pip poetry && poetry install --with local && poetry install --extras chroma && ./scripts/setup
+```
+2. Launch the Backend server:
+```bash
+poetry run python3.11 -m auth_RAG
+```
+
+#### Frontend
+*Prerequisites:* Node.js and npm
+1. Frontend Setup, you need to navigate to project folder first(thesis_auth_rag):
+```bash
+cd frontend
+npm install
+```
+2. Start the frontend server
+```bash
+npm start
+```
+The backend server will be accessible at http://localhost:8001.
+The API documentation is available at http://127.0.0.1:8001/docs/.
+
+The frontend server will be accessible at http://localhost:3000.
 
 
 
@@ -56,59 +101,5 @@ This will start both the frontend and backend services.
 5. Access the application:
 - Frontend: http://localhost:3000
 - Backend: http://localhost:8001
-
-### Local Installation
-
-
-If you want to run the application in your machine without using Docker, follw these steps:
-#### Backend
-*Prerequisites:* python3.11, macOS or Linux system
-#### quickstart in few lines: 
-```bash
-cd backend && python3.11 -m venv .venv && source .venv/bin/activate && \
-pip install --upgrade pip poetry && poetry install --with local && poetry install --extras chroma && ./scripts/setup
-#Laucn the server
-poetry run python3.11 -m auth_RAG
-```
-#### Step-by-Step Setup:
-1. Navigate to backend directory
-```bash
-cd backend
-```
-2. Set Up Virtual Environment
-```bash
-python3.11 -m venv .venv
-source .venv/bin/activate
-```
-3. Install Dependencies with Poetry
-```bash
-pip install --upgrade pip poetry
-poetry install --with local
-poetry install --extras chroma
-```
-4. Run Setup Script
-```bash
-./scripts/setup
-```
-5. Launch Server
-```bash
-poetry run python3.11 -m auth_RAG
-```
-The server will be accessible at http://localhost:8001.
-
-The API documentation is available at http://127.0.0.1:8001/docs/. Explore the endpoints and interact with the API using the Swagger documentation.
-
-#### Frontend
-*Prerequisites:* Node.js and npm installed on your system.
-1. Navigate to frontend directory and Install project dependencies
-```bash
-cd frontend
-npm install
-```
-2. Start the application
-```bash
-npm start
-```
-The server will be accessible at http://localhost:3000.
 
 
