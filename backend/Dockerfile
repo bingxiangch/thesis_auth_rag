@@ -39,8 +39,7 @@ RUN adduser worker
 WORKDIR /home/worker/app
 
 RUN mkdir local_data; chown worker local_data
-RUN mkdir models; chown worker models
-# RUN touch sqlite.db && chmod a+rw sqlite.db
+
 # Set permissions for the working directory and SQLite database file
 RUN chown -R worker:worker /home/worker/app
 COPY sqlite.db ./
@@ -49,8 +48,12 @@ RUN chmod ugo+rw /home/worker/app/sqlite.db
 COPY --chown=worker --from=dependencies /home/worker/app/.venv/ .venv
 COPY --chown=worker auth_RAG/ auth_RAG
 COPY --chown=worker *.yaml *.md ./
+COPY --chown=worker models/ models
+
 COPY --chown=worker scripts/ scripts
 ENV PYTHONPATH="$PYTHONPATH:/auth_RAG/"
-
+RUN chmod +x scripts/*
+RUN scripts/setup
+RUN chmod -R ugo+rw models/
 USER worker
 ENTRYPOINT python -m auth_RAG 
