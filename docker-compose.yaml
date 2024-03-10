@@ -5,7 +5,7 @@ services:
       dockerfile: ./Dockerfile
     volumes:
       - ./backend/local_data/:/home/worker/app/local_data
-      - ./backend/scripts/:/home/worker/app/scripts
+      - ./models/:/home/worker/app/models
       - ./backend/sqlite.db:/home/worker/app/sqlite.db
 
     ports:

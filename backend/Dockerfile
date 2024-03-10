@@ -41,7 +41,8 @@ WORKDIR /home/worker/app
 RUN mkdir local_data; chown worker local_data
 
 # Set permissions for the working directory and SQLite database file
-RUN chown -R worker:worker /home/worker/app
+RUN mkdir -p local_data; chown -R worker local_data
+RUN mkdir -p models; chown -R worker models
 COPY sqlite.db ./
 RUN chmod ugo+rw /home/worker/app/sqlite.db
 
@@ -51,9 +52,11 @@ COPY --chown=worker *.yaml *.md ./
 COPY --chown=worker models/ models
 
 COPY --chown=worker scripts/ scripts
+COPY --chown=worker pyproject.toml poetry.lock ./
+
+# Copy the entry point script into the container and make it executable
+COPY --chown=worker entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 ENV PYTHONPATH="$PYTHONPATH:/auth_RAG/"
-RUN chmod +x scripts/*
-RUN scripts/setup
 RUN chmod -R ugo+rw models/
-USER worker
-ENTRYPOINT python -m auth_RAG 
+ENTRYPOINT /entrypoint.sh python -m auth_RAG 
