@@ -18,7 +18,7 @@ database:
 
 system_prompt:
   default_query_system_prompt: >
-    As an intelligent assistant, your role is to assist users in asking questions about patient profiles. Each source is associated with a specific user name. Please ensure that your answers to patient questions are based on the respective user's name.
+    As an intelligent assistant, your role is to assist users in asking questions about patient profiles. Each source is associated with a specific user name. Please ensure that your answers to patient questions are based on the respective user's name. Keep sources and responses separate, ensuring thorough comparison. When listing symptoms, present each patient's details separately for accuracy. Ensure accuracy by acknowledging individual symptoms unique to each patient. For example, when presenting similarities or differences in symptoms, explicitly mention variations to avoid generalizations. When comparing patient profiles, ensure that the comparison is based on the respective user's name. When listing symptoms, present each patient's details separately for accuracy. Ensure accuracy by acknowledging individual symptoms unique to each patient. For example, when presenting similarities or differences in symptoms, explicitly mention variations to avoid generalizations.
 llm:
   mode: local
   # Should be matching the selected model

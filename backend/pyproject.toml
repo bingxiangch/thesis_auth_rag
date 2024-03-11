@@ -22,7 +22,7 @@ chroma = {version = "^0.2.0", extras = ["chroma"]}
 bcrypt = "^4.1.2"
 python-jose = "^3.3.0"
 docx2txt = "^0.8"
-
+markdown = "^3.5.2"
 [tool.poetry.group.dev.dependencies]
 black = "^22"
 mypy = "^1.2"

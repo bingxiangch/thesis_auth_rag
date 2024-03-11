@@ -51,7 +51,8 @@ export const ChatView = () => {
         <div style={{ height: '300px', overflowY: 'auto', border: '1px solid #ccc', padding: '10px' }}>
           {messages.map((message, index) => (
             <div key={index} style={{ marginBottom: '10px', textAlign: message.sender === 'user' ? 'right' : 'left' }}>
-              <strong>{message.sender === 'user' ? 'You' : 'Bot'}:</strong> {message.text}
+              <strong>{message.sender === 'user' ? 'You' : 'Bot'}:</strong> 
+              <div dangerouslySetInnerHTML={{ __html: message.text.replace(/(?:\r\n|\r)(?![\n*])/g, '<br />').replace(/<ol>/g, '<ol class="list-decimal" style="padding-left: 20px;">') }} />
             </div>
           ))}
         </div>
@@ -73,6 +74,7 @@ export const ChatView = () => {
           </button>
         </div>
       </div>
+
     </main>
   );
 };

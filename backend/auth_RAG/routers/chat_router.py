@@ -15,6 +15,7 @@ from auth_RAG.db.session import get_db
 from auth_RAG.services.chunks_service import Chunk, ChunksService
 from collections import OrderedDict
 from auth_RAG.settings.settings import settings
+import markdown
 chat_router = APIRouter(prefix="/v1")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
@@ -161,12 +162,13 @@ def prompt_completion(
         use_context=True,
         context_filter=docs_filter,
     )
+    # Assuming completion.response contains Markdown-formatted text
+    formatted_response = markdown.markdown(completion.response, extensions=['markdown.extensions.extra'])
     # # Check if the current user has access to the first doc_id and generate advisor info
     # if access_level_of_first_doc is not None and access_level_of_first_doc != current_user.access_level:
     #     completion.response = completion.response + " You can contact users with access level " + str(access_level_of_first_doc) + " for help or get more accurate answer."
-
     return {
-        "response": completion.response,
+        "response": formatted_response,
         "sources": completion.sources if body.include_sources else None
     }
 
