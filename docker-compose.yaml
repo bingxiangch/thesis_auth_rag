@@ -2,7 +2,7 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: ./Dockerfile
+      dockerfile: ./Dockerfile.gpu
     volumes:
       - ./backend/local_data/:/home/worker/app/local_data
       - ./models/:/home/worker/app/models
