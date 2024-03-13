@@ -23,7 +23,6 @@
     "react-chartjs-2": "^5.2.0",
     "react-content-loader": "^6.2.0",
     "react-dom": "^18.2.0",
-    "react-html-parser": "^2.0.2",
     "react-leaflet": "^4.1.0",
     "react-markdown": "^9.0.1",
     "react-router-dom": "^6.4.2",
