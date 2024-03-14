@@ -18,7 +18,7 @@ import { CreateModal } from './CreateModal'
 import { DeleteFileModal } from './DeleteFileModel'
 import ClipLoader from 'react-spinners/ClipLoader'
 import api from '../common/api'
-
+import { BASE_URL } from '../config'
 export const DocumentsView = () => {
   const [filesData, setFilesData] = useState([])
   const [loading, setLoading] = useState(false)
@@ -37,7 +37,7 @@ export const DocumentsView = () => {
 
   const handleAddFileClick = async () => {
     // Perform API call here using fetch or your preferred HTTP client
-    const apiUrl = 'http://localhost:8001/v1/ingest/file'; // Replace with your API endpoint
+    const apiUrl = `${BASE_URL}ingest/file`; // Replace with your API endpoint
 
     if (selectedFile) {
       const formData = new FormData();
@@ -89,7 +89,7 @@ export const DocumentsView = () => {
   const getUsers = async () => {
     setLoading(true)
     api
-      .get('http://localhost:8001/v1/files/')
+      .get(`${BASE_URL}files/`)
       .then((res) => {
         setFilesData(res.data)
       })

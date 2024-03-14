@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import api from '../common/api';
 import { useChat } from './ChatContext';
-
+import { BASE_URL } from '../config';
 export const ChatView = () => {
   const { messages, loading, error, addMessage, setLoading, setError } = useChat();
   const [newMessage, setNewMessage] = useState('');
@@ -13,7 +13,7 @@ export const ChatView = () => {
       setLoading(true);
 
       try {
-        const response = await api.post('http://localhost:8001/v1/chat', { prompt: newMessage });
+        const response = await api.post(`${BASE_URL}chat`, { prompt: newMessage });
         addMessage({ text: response.data.response, sender: 'bot' });
       } catch (error) {
         handleApiError(error);

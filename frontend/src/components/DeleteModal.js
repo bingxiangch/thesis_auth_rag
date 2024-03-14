@@ -4,7 +4,7 @@ import ClipLoader from 'react-spinners/ClipLoader'
 import { Button, Flex } from '@tremor/react'
 import api from '../common/api'
 import { useAuth } from '../common/AuthProvider'
-
+import { BASE_URL } from '../config'
 export const DeleteModal = ({ open, onClose, clickedUser }) => {
   const { handleLogout, user } = useAuth()
   const [errorMessage, setErrorMessage] = useState(null)
@@ -15,7 +15,7 @@ export const DeleteModal = ({ open, onClose, clickedUser }) => {
     setErrorMessage(null)
     setLoading(true)
     api
-      .delete(`http://localhost:8001/v1/users/${clickedUser.username}`)
+      .delete(`${BASE_URL}users/${clickedUser.username}`)
       .then((res) => {
         if (clickedUser.username === user.username) {
           handleLogout()

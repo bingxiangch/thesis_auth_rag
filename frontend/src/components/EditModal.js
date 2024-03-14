@@ -4,7 +4,7 @@ import ClipLoader from 'react-spinners/ClipLoader'
 import { Button } from '@tremor/react'
 import api from '../common/api'
 import { useAuth } from '../common/AuthProvider'
-
+import { BASE_URL } from '../config'
 export const EditModal = ({ open, onClose, clickedUser }) => {
   const { handleLogout } = useAuth()
   const [validationMessage, setValidationMessage] = useState(null)
@@ -51,7 +51,7 @@ export const EditModal = ({ open, onClose, clickedUser }) => {
       access_level: parseInt(props.access_level),  // Assuming access_level is an integer
     };
     api
-      .put(`http://localhost:8001/v1/users/${clickedUser.username}`, data)
+      .put(`${BASE_URL}v1/users/${clickedUser.username}`, data)
       .then((res) => {
         if (logOut) {
           handleLogout()

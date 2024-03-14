@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import { BASE_URL } from '../config'
 const api = axios.create({})
 // Flag to mark if access token is being refreshed
 let isRefreshing = false
@@ -72,7 +72,7 @@ api.interceptors.response.use(
       return new Promise(function (resolve, reject) {
         // Getting new tokens from api
         axios
-          .post('http://localhost:8001/v1/token', {
+        .post(`${BASE_URL}token`, {
             token: JSON.parse(localStorage.getItem('tokens')).refreshToken
           })
           .then(({ data }) => {

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import ClipLoader from 'react-spinners/ClipLoader'
 import { Button, Flex } from '@tremor/react'
 import api from '../common/api'
-
+import { BASE_URL } from '../config'
 export const DeleteFileModal = ({ open, onClose, clickedUser }) => {
   const [errorMessage, setErrorMessage] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -13,7 +13,7 @@ export const DeleteFileModal = ({ open, onClose, clickedUser }) => {
     setErrorMessage(null)
     setLoading(true)
     api
-      .delete(`http://localhost:8001/v1/files/${clickedUser.file_name}`)
+      .delete(`${BASE_URL}files/${clickedUser.file_name}`)
       .then((res) => {
 
         closeAndInit()

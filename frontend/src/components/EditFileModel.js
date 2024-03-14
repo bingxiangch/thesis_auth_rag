@@ -4,7 +4,7 @@ import ClipLoader from 'react-spinners/ClipLoader'
 import { Button } from '@tremor/react'
 import api from '../common/api'
 import { useAuth } from '../common/AuthProvider'
-
+import { BASE_URL } from '../config'
 export const EditFileModel = ({ open, onClose, clickedUser }) => {
   const { handleLogout } = useAuth()
   const [validationMessage, setValidationMessage] = useState(null)
@@ -63,7 +63,7 @@ export const EditFileModel = ({ open, onClose, clickedUser }) => {
       access_level: parseInt(props.access_level),  // Assuming access_level is an integer
     };
     api
-      .put(`http://localhost:8001/v1/files/${clickedUser.file_name}`, data)
+      .put(`${BASE_URL}files/${clickedUser.file_name}`, data)
       .then((res) => {
         if (logOut) {
           handleLogout()

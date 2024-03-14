@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 import { useChat } from '../components/ChatContext'
+import { BASE_URL } from '../config'
 const AuthContext = createContext(null)
 // Hook accesses the funuctions from this component.
 // Offers login/logout related functionality and user setting.
@@ -31,7 +32,7 @@ export const AuthProvider = ({ children }) => {
       params.append('username', payload.username);
       params.append('password', payload.password);  
       // Calling login endpoint with the provided payload (Credentials)
-      const response = await axios.post('http://localhost:8001/v1/token', params);
+      const response = await axios.post(`${BASE_URL}token`, params);
   
       // Setting response to local storage via hook.
       localStorage.setItem(

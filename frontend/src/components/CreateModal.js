@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import ClipLoader from 'react-spinners/ClipLoader'
 import { Button } from '@tremor/react'
 import api from '../common/api'
-
+import { BASE_URL } from '../config'
 export const CreateModal = ({ open, onClose }) => {
   const [validationMessage, setValidationMessage] = useState(null)
   const [showErrMsg, setShowErrMsg] = useState(null)
@@ -58,7 +58,7 @@ export const CreateModal = ({ open, onClose }) => {
     }
 
     api
-      .post('http://localhost:8001/v1/register', user)
+      .post(`${BASE_URL}register`, user)
       .then((res) => {
         closeAndInit()
       })

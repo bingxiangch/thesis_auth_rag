@@ -20,7 +20,7 @@ import { CreateModal } from './CreateModal'
 import { DeleteModal } from './DeleteModal'
 import ClipLoader from 'react-spinners/ClipLoader'
 import api from '../common/api'
-
+import { BASE_URL } from '../config'
 export const UsersView = () => {
   const { user } = useAuth()
   const [usersData, setUsersData] = useState([])
@@ -45,7 +45,7 @@ export const UsersView = () => {
   const getUsers = async () => {
     setLoading(true)
     api
-      .get('http://localhost:8001/v1/users/')
+      .get(`${BASE_URL}users/`)
       .then((res) => {
         setUsersData(res.data)
       })
