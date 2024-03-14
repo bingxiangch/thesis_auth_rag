@@ -51,7 +51,7 @@ export const EditModal = ({ open, onClose, clickedUser }) => {
       access_level: parseInt(props.access_level),  // Assuming access_level is an integer
     };
     api
-      .put(`${BASE_URL}v1/users/${clickedUser.username}`, data)
+      .put(`${BASE_URL}users/${clickedUser.username}`, data)
       .then((res) => {
         if (logOut) {
           handleLogout()
