@@ -5,6 +5,7 @@ This project introduces a demo application that showcases the integration of acc
 
 
 ## Usage Instructions
+   - **Live Demo:** http://34.88.57.136:3000/
 
 After a successful installation and launch of the project, follow the steps below to explore and interact with the system:
 
