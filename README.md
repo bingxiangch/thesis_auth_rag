@@ -44,6 +44,19 @@ cd thesis_auth_rag
 chmod +x setup_and_run.sh
 ./setup_and_run.sh
 ```
+### Docker Installation
+1. Clone this repository to your local machine and navigate to the project.
+```bash
+git clone https://github.com/bingxiangch/thesis_auth_rag.git
+cd thesis_auth_rag
+```
+2. Docker command
+```bash
+docker-compose up --build
+```
+3. Access the application:
+- Frontend: http://localhost:3000
+- Backend: http://localhost:8001
 
 ### Step-by-Step Setup:
 #### Backend
@@ -71,35 +84,9 @@ npm start
 ```
 The backend server will be accessible at http://localhost:8001.
 The API documentation is available at http://127.0.0.1:8001/docs/.
-
 The frontend server will be accessible at http://localhost:3000.
 
 
 
-## Installation
-### Docker Installation
-1. Clone this repository to your local machine and navigate to the project.
-```bash
-git clone https://github.com/bingxiangch/thesis_auth_rag.git
-cd thesis_auth_rag
-```
-2. Build image:
-```bash
-docker-compose build
-```
-
-3. Run setup in service script to download local models
-```bash
-docker compose run --rm --entrypoint="bash -c '[ -f scripts/setup ] && scripts/setup'" backend
-```
-4. Run the service:
-```bash
-docker-compose up
-```
-This will start both the frontend and backend services. 
-
-5. Access the application:
-- Frontend: http://localhost:3000
-- Backend: http://localhost:8001
 
 
