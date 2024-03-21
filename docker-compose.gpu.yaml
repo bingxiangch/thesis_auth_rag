@@ -1,0 +1,24 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile.gpu
+    volumes:
+      - ./backend/local_data/:/home/worker/app/local_data
+      - ./models/:/home/worker/app/models
+      - ./backend/sqlite.db:/home/worker/app/sqlite.db
+    runtime: nvidia
+    ports:
+      - 8001:8080
+    environment:
+      PORT: 8080
+      PGPT_PROFILES: docker
+      PGPT_LLM_MODE: llamacpp
+      PGPT_EMBEDDING_MODE: huggingface
+
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: ./Dockerfile
+    ports:
+      - '3000:3000'
