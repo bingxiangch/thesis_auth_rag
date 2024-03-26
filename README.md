@@ -7,6 +7,9 @@ This project introduces a demo application that showcases the integration of acc
 ## Usage Instructions
    - **Live Demo:** http://34.88.57.136:3000/
 
+The project is deployed on Google Compute Engine with a GPU machine type (1 x NVIDIA L4, 4 vCPU, 64GB memory).
+
+
 After a successful installation and launch of the project, follow the steps below to explore and interact with the system:
 
 **1. Login Credentials:**
@@ -45,15 +48,22 @@ cd thesis_auth_rag
 chmod +x setup_and_run.sh
 ./setup_and_run.sh
 ```
-### Docker Installation
+### Docker Installation 
+Docker Installation with NVIDIA GPU Support(Running project on GPU)
+
+*Prerequisites:* 
+Install CUDA toolkit from [NVIDIA CUDA Downloads](https://developer.nvidia.com/cuda-downloads)
+
+Verify your installation is correct by running `nvidia-smi`, ensure your CUDA version is up to date and your GPU is detected.
+Steps:
 1. Clone this repository to your local machine and navigate to the project.
 ```bash
 git clone https://github.com/bingxiangch/thesis_auth_rag.git
 cd thesis_auth_rag
 ```
-2. Docker command
+2. Run the following Docker command for GPU support:
 ```bash
-docker-compose up --build
+docker-compose -f docker-compose.gpu.yaml up --build
 ```
 3. Access the application:
 - Frontend: http://localhost:3000
@@ -86,8 +96,4 @@ npm start
 The backend server will be accessible at http://localhost:8001.
 The API documentation is available at http://127.0.0.1:8001/docs/.
 The frontend server will be accessible at http://localhost:3000.
-
-
-
-
 

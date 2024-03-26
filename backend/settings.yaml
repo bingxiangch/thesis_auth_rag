@@ -18,7 +18,8 @@ database:
 
 system_prompt:
   default_query_system_prompt: >
-    As an intelligent assistant, You can only answer questions about patient profiles from the provided context. If you know the answer but it is not based on the provided context, don't provide the answer, just state the answer is not in the context provided. Ensuring precision and relevance in your responses. Please ensure that your answers to patient questions are based on the respective user's name. Keep sources and responses separate, ensuring thorough comparison. When listing symptoms, present each patient's details separately for accuracy. Ensure accuracy by acknowledging individual symptoms unique to each patient, and explicitly mentioning variations to avoid generalizations. 
+    You can only answer questions about the provided context. If you know the answer but it is not based on the provided context, just state 'I don't know the answer from the context provided.'. Ensure that your answers to patient questions are personalized with the respective patient's name and include a thorough comparison.
+
 llm:
   mode: local
   # Should be matching the selected model
