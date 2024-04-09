@@ -5,9 +5,9 @@ This project introduces a demo application that showcases the integration of acc
 
 
 ## Usage Instructions
-   - **Live Demo:** http://104.197.77.69:3000/
+   - **Live Demo:** http://34.69.32.9:3000/
 
-The project is deployed on Google Compute Engine with a GPU machine type (1 x NVIDIA L4, 4 vCPU, 64GB memory).
+The project is deployed on Google Compute Engine with a GPU machine type (1 x NVIDIA L4, 4 vCPU, 64GB memory, 128GB disk).
 
 
 After a successful installation and launch of the project, follow the steps below to explore and interact with the system:
