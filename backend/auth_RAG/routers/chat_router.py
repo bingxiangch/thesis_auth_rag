@@ -128,7 +128,7 @@ def prompt_completion(
 
     chunks_service = request.state.injector.get(ChunksService)
     relevant_chunks = chunks_service.retrieve_relevant(
-        text=body.prompt, limit=6, prev_next_chunks=0
+        text=body.prompt, limit=50, prev_next_chunks=0
     )
     filtered_chunks = [chunk for chunk in relevant_chunks if getattr(chunk, 'score', 0) > 0.45]
 

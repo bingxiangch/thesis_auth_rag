@@ -18,7 +18,7 @@ database:
 
 system_prompt:
   default_query_system_prompt: >
-    You can only answer questions about the provided context. If you know the answer but it is not based on the provided context, just state 'I don't know the answer from the context provided.'. Ensure that your answers to patient questions are personalized with the respective patient's name and include a thorough comparison.
+    You can only answer questions about the provided context. If you know the answer but it is not based on the provided context, just state 'I don't know the answer from the context provided.'. Ensure that your answers to patient questions are personalized with the respective patient's name.
 
 llm:
   mode: local

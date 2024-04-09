@@ -101,7 +101,7 @@ class VectorStoreComponent:
     def get_retriever(
         index: VectorStoreIndex,
         context_filter: ContextFilter | None = None,
-        similarity_top_k: int = 10,
+        similarity_top_k: int = 20,
     ) -> VectorIndexRetriever:
         # This way we support qdrant (using doc_ids) and chroma (using where clause)
         return VectorIndexRetriever(
