@@ -34,6 +34,10 @@ can be found on /docs folder
      - Provide Mark Lee's Family medical history
      - Provide the names of all patients that you can access
 
+### Setting huggingface token
+To set the Huggingface access token for downloading the model, add your token in the thesis_auth_rag/backend/settings.yaml file under the field local:access_token.
+
+
 ### Local Installation
 If you want to run the application in your machine without using Docker, follw these steps:
 
