@@ -5,7 +5,7 @@ This project introduces a demo application that showcases the integration of acc
 
 
 ## Usage Instructions
-   - **Live Demo:** http://34.72.240.55:3000/
+   - **Live Demo:** http://34.72.240.55:3000/ 
 
 The project is deployed on Google Compute Engine with a GPU machine type (1 x NVIDIA L4, 4 vCPU, 64GB memory, 128GB disk).
 
@@ -23,15 +23,16 @@ After a successful installation and launch of the project, follow the steps belo
 
 **3. Pre-Loaded Knowledge based:**
    - The system comes pre-loaded with three health profiles related to heart issues:
-     - Alex Smith.docx
-     - Mark Lee.docx
-     - Sarah Davis.docx
+     - Anna Martinez .docx Emily White .docx
+     - Mark Lee.docx Derek Johnson .docx
+     - Kevin Brown .docx Lisa Nguyen .docx
+     - John Carter .docx Rebecca Turner .docx
 
 **4. Example Questions:**
 
-     - what symptoms does Alex Smith have?
-     - what symptoms do Alex Smith and Mark Lee have
-     - List all patients in the context
+     - what symptoms does Mark Lee have?
+     - Provide Mark Lee's Family medical history
+     - Provide the names of all patients that you can access
 
 ### Local Installation
 If you want to run the application in your machine without using Docker, follw these steps:
@@ -43,10 +44,15 @@ If you want to run the application in your machine without using Docker, follw t
 git clone https://github.com/bingxiangch/thesis_auth_rag.git
 cd thesis_auth_rag
 ```
-2. Run the Setup Script:
+2. Run the Setup Script on MAC:
 ```bash
 chmod +x setup_and_run.sh
 ./setup_and_run.sh
+```
+3. Run the Setup Script on Linux with GPU Support
+```bash
+chmod +x setup_and_run.sh
+./setup_and_run_GPU.sh
 ```
 ### Docker Installation 
 Docker Installation with NVIDIA GPU Support(Running project on GPU)
