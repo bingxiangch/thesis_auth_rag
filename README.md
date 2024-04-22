@@ -22,12 +22,12 @@ After a successful installation and launch of the project, follow the steps belo
    - **Chat with System:** Engage in conversations with the system for information retrieval.
 
 **3. Pre-Loaded Knowledge based:**
-   - The system comes pre-loaded with three health profiles related to heart issues:
-     - Anna Martinez .docx Emily White .docx
-     - Mark Lee.docx Derek Johnson .docx
-     - Kevin Brown .docx Lisa Nguyen .docx
-     - John Carter .docx Rebecca Turner .docx
-
+   - The system comes pre-loaded with eight health profiles related to health issues, available in the /docs folder::
+     - Anna Martinez.docx  Emily White.docx
+     - Mark Lee.docx       Derek Johnson.docx
+     - Kevin Brown.docx    Lisa Nguyen.docx
+     - John Carter.docx    Rebecca Turner.docx
+can be found on /docs folder
 **4. Example Questions:**
 
      - what symptoms does Mark Lee have?
