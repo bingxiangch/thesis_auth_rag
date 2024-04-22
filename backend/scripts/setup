@@ -7,7 +7,8 @@ from transformers import AutoTokenizer
 
 from auth_RAG.paths import models_path, models_cache_path
 from auth_RAG.settings.settings import settings
-
+from huggingface_hub import login
+login(token = settings().local.access_token)
 resume_download = True
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog='Setup: Download models from huggingface')

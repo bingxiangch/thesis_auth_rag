@@ -25,6 +25,7 @@ class LLMComponent:
                 AutoTokenizer.from_pretrained(
                     pretrained_model_name_or_path=settings.llm.tokenizer,
                     cache_dir=str(models_cache_path),
+                    token=settings.local.access_token,
                 )
             )
 

@@ -121,6 +121,11 @@ class LocalSettings(BaseModel):
             "`llama2` is the historic behaviour. `default` might work better with your custom models."
         ),
     )
+    access_token: str = Field(
+        None,
+        description="Huggingface access token, required to download some models",
+    )
+
 
 
 class EmbeddingSettings(BaseModel):
