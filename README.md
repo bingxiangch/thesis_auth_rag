@@ -73,7 +73,7 @@ cd thesis_auth_rag
 ```
 2. Run the following Docker command for GPU support:
 ```bash
-docker-compose -f docker-compose.gpu.yaml up --build
+docker compose -f docker-compose.gpu.yaml up --build
 ```
 3. Access the application:
 - Frontend: http://localhost:3000
