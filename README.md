@@ -28,6 +28,7 @@ After a successful installation and launch of the project, follow the steps belo
      - Kevin Brown.docx    Lisa Nguyen.docx
      - John Carter.docx    Rebecca Turner.docx
 can be found on /docs folder
+
 **4. Example Questions:**
 
      - what symptoms does Mark Lee have?
