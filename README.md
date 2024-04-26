@@ -28,6 +28,7 @@ After a successful installation and launch of the project, follow the steps belo
      - Kevin Brown.docx    Lisa Nguyen.docx
      - John Carter.docx    Rebecca Turner.docx
 can be found on /docs folder
+
 **4. Example Questions:**
 
      - what symptoms does Mark Lee have?
@@ -65,6 +66,7 @@ tested on: Windows Subsystem Linux ( Ubuntu 22.04 )
 
 *Prerequisites:* 
 Install CUDA toolkit from [NVIDIA CUDA Downloads](https://developer.nvidia.com/cuda-downloads)
+run this command before running docker-compose
 ```bash
 distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
 curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
