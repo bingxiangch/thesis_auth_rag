@@ -1,16 +1,16 @@
 # Authorization-Based Data Access for RAG-Enabled Generative AI (On-Premises)
 
 ## Description
-This project introduces a demo application that showcases the integration of access control mechanisms and retrieval augmented generation (RAG) for a Generative AI system dealing with substance data. xxxx
+This project introduces a demo application that showcases the integration of access control mechanisms and retrieval augmented generation (RAG) for resttricting data between different users
 
 
 ## Usage Instructions
-   - **Live Demo:** http://34.72.240.55:3000/ 
+   <!-- - **Live Demo:** http://34.72.240.55:3000/ 
 
 The project is deployed on Google Compute Engine with a GPU machine type (1 x NVIDIA L4, 4 vCPU, 64GB memory, 128GB disk).
 
 
-After a successful installation and launch of the project, follow the steps below to explore and interact with the system:
+After a successful installation and launch of the project, follow the steps below to explore and interact with the system: -->
 
 **1. Login Credentials:**
    - **Username:** root
@@ -61,9 +61,18 @@ chmod +x setup_and_run.sh
 ### Docker Installation 
 Docker Installation with NVIDIA GPU Support(Running project on GPU)
 
+tested on: Windows Subsystem Linux ( Ubuntu 22.04 )
+
 *Prerequisites:* 
 Install CUDA toolkit from [NVIDIA CUDA Downloads](https://developer.nvidia.com/cuda-downloads)
-
+```bash
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+sudo apt-get update
+sudo apt-get install -y nvidia-docker2
+sudo systemctl restart docker
+```
 Verify your installation is correct by running `nvidia-smi`, ensure your CUDA version is up to date and your GPU is detected.
 Steps:
 1. Clone this repository to your local machine and navigate to the project.
@@ -73,7 +82,7 @@ cd thesis_auth_rag
 ```
 2. Run the following Docker command for GPU support:
 ```bash
-docker-compose -f docker-compose.gpu.yaml up --build
+docker compose -f docker-compose.gpu.yaml up --build
 ```
 3. Access the application:
 - Frontend: http://localhost:3000
