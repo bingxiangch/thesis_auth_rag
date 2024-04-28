@@ -10,4 +10,4 @@ fi
 access_token=$1
 
 # Update access_token under the local section in backend/settings.yaml
-sed -i '' '/^local:/,/^[^ ]/ s/access_token:.*/access_token: '"$access_token"'/' backend/settings.yaml
+sed -i'.bak' '/^local:/,/^[^ ]/ s/access_token:.*/access_token: '"$access_token"'/' backend/settings.yaml
