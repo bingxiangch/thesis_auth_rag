@@ -1,18 +1,25 @@
 #!/bin/bash
 
-# Function to write values to config.yaml
-write_to_yaml() {
-    cat <<EOF >backend/setting.yaml
-access_token: $hf_token
-EOF
-}
-# Check if hf_token argument is provided
+# Check if access_token argument is provided
 if [ -z "$1" ]; then
-    echo "Error: hf_token argument is missing."
+    echo "Error: access_token argument is missing."
     exit 1
-else
-    hf_token=$1
 fi
+
+# Set the access token
+access_token=$1
+
+# Check if backend/settings.yaml exists
+if [ ! -f "backend/settings.yaml" ]; then
+    echo "Error: backend/settings.yaml does not exist."
+    exit 1
+fi
+
+# Update access_token in backend/settings.yaml
+sed -i "s/^ *access_token: .*$/  access_token: $access_token/" backend/settings.yaml
+
+
+
 
 # Backend setup
 cd backend && python3.11 -m venv .venv && source .venv/bin/activate && \
