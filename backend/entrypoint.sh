@@ -11,7 +11,7 @@ export PGPT_PROMPT_STYLE="mistral"
 
 ## Download the embedding and model files
 echo "Running setup script"
-poetry run python scripts/setup
+poetry run python scripts/setup.py
 
 ## Execute the main container command
 exec "$@"
