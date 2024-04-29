@@ -33,7 +33,9 @@ ENV POETRY_VIRTUALENVS_IN_PROJECT=true
 
 FROM base as dependencies
 WORKDIR /home/worker/app
-COPY pyproject.toml poetry.lock ./
+COPY pyproject_docker.toml pyproject.toml
+COPY poetry.lock poetry.lock
+
 # COPY sqlite.db ./
 RUN poetry install --with local
 RUN poetry install --extras chroma
