@@ -22,11 +22,10 @@ After a successful installation and launch of the project, follow the steps belo
    - **Chat with System:** Engage in conversations with the system for information retrieval.
 
 **3. Pre-Loaded Knowledge based:**
-   - The system comes pre-loaded with eight health profiles related to health issues, available in the /docs folder::
+   - The system comes pre-loaded with five health profiles related to health issues, available in the /docs folder::
      - Anna Martinez.docx  Emily White.docx
-     - Mark Lee.docx       Derek Johnson.docx
-     - Kevin Brown.docx    Lisa Nguyen.docx
-     - John Carter.docx    Rebecca Turner.docx
+     - Mark Lee.docx       John Carter.docx 
+     - Lisa Nguyen.docx   
 can be found on /docs folder
 
 **4. Example Questions:**
@@ -35,12 +34,8 @@ can be found on /docs folder
      - Provide Mark Lee's Family medical history
      - Provide the names of all patients that you can access
 
-### Setting huggingface token
-To set the Huggingface access token for downloading the model, add your token in the thesis_auth_rag/backend/settings.yaml file under the field local:access_token.
-
-
 ### Local Installation
-If you want to run the application in your machine without using Docker, follw these steps:
+If you want to run the application in your local machine without using Docker, follw these steps:
 
 *Prerequisites:* python3.11, macOS or Linux system, Node.js and npm
 ### Quickstart
@@ -49,16 +44,22 @@ If you want to run the application in your machine without using Docker, follw t
 git clone https://github.com/bingxiangch/thesis_auth_rag.git
 cd thesis_auth_rag
 ```
-2. Run the Setup Script on MAC:
+2. Set huggingface access token (Set your hf_token):
 ```bash
-chmod +x setup_and_run.sh
+./update_hf_token.sh hf_token
+```
+3. Run Setup Script
+
+On Mac
+```bash
 ./setup_and_run.sh
 ```
-3. Run the Setup Script on Linux with GPU Support
+On Linux with GPU Support
 ```bash
-chmod +x setup_and_run.sh
 ./setup_and_run_GPU.sh
 ```
+
+
 ### Docker Installation 
 Docker Installation with NVIDIA GPU Support(Running project on GPU)
 
@@ -66,7 +67,7 @@ tested on: Windows Subsystem Linux ( Ubuntu 22.04 )
 
 *Prerequisites:* 
 Install CUDA toolkit from [NVIDIA CUDA Downloads](https://developer.nvidia.com/cuda-downloads)
-run this command before running docker-compose
+you can also run this command before running docker-compose
 ```bash
 distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
 curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
@@ -76,29 +77,44 @@ sudo apt-get install -y nvidia-docker2
 sudo systemctl restart docker
 ```
 Verify your installation is correct by running `nvidia-smi`, ensure your CUDA version is up to date and your GPU is detected.
+
+
 Steps:
 1. Clone this repository to your local machine and navigate to the project.
 ```bash
 git clone https://github.com/bingxiangch/thesis_auth_rag.git
 cd thesis_auth_rag
 ```
-2. Run the following Docker command for GPU support:
+2. Set huggingface access token (Set your hf_token):
+```bash
+./update_hf_token.sh hf_token
+```
+3. Run the following Docker command for GPU support:
 ```bash
 docker compose -f docker-compose.gpu.yaml up --build
 ```
-3. Access the application:
+4. Access the application:
 - Frontend: http://localhost:3000
 - Backend: http://localhost:8001
+
 
 ### Step-by-Step Setup:
 #### Backend
 *Prerequisites:* python3.11, macOS or Linux system
-1. Backend Setup, you need to navigate to project folder first(thesis_auth_rag):
+1. Set huggingface access token (Set your hf_token):
+```bash
+./update_hf_token.sh hf_token
+```
+2. Backend Setup, you need to navigate to project folder first(thesis_auth_rag):
 ```bash
 cd backend && python3.11 -m venv .venv && source .venv/bin/activate && \
-pip install --upgrade pip poetry && poetry install --with local && poetry install --extras chroma && ./scripts/setup
+pip install --upgrade pip poetry && poetry install --with local && poetry install --extras chroma && ./scripts/setup.py
 ```
-2. Launch the Backend server:
+3. (Optional)Llama-CPP Linux NVIDIA GPU support(Linux Only) 
+```bash
+CMAKE_ARGS='-DLLAMA_CUBLAS=on' poetry run pip install --force-reinstall --no-cache-dir llama-cpp-python
+```
+4. Launch the Backend server:
 ```bash
 poetry run python3.11 -m auth_RAG
 ```
