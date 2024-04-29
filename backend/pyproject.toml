@@ -4,9 +4,6 @@ version = "0.2.0"
 description = "authorization-based rag system"
 authors = ["bingxiang chen"]
 
-[[tool.poetry.packages]]
-include = "auth_RAG"
-
 [tool.poetry.dependencies]
 python = ">=3.11,<3.12"
 fastapi = { extras = ["all"], version = "^0.103.1" }

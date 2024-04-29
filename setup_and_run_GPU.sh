@@ -2,7 +2,7 @@
 
 # Backend setup
 cd backend  && python3.11 -m venv .venv && source .venv/bin/activate && \
-pip install --upgrade pip poetry && poetry install --with local && poetry install --extras chroma && ./scripts/setup
+pip install --upgrade pip poetry && poetry install --with local && poetry install --extras chroma && ./scripts/setup.py
 
 CMAKE_ARGS='-DLLAMA_CUBLAS=on' poetry run pip install --force-reinstall --no-cache-dir llama-cpp-python
 
