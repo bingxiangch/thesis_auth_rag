@@ -5,7 +5,7 @@ This project introduces a demo application that showcases the integration of acc
 
 
 ## Usage Instructions
-   <!-- - **Live Demo:** http://34.72.240.55:3000/ 
+   <!-- - **Live Demo:** 
 
 The project is deployed on Google Compute Engine with a GPU machine type (1 x NVIDIA L4, 4 vCPU, 64GB memory, 128GB disk).
 
@@ -33,7 +33,7 @@ can be found on /docs folder
      - what symptoms does Mark Lee have?
      - Provide Mark Lee's Family medical history
      - Provide the names of all patients that you can access
-
+     - mitä oireita Matti Virtasella ja Anna Mäkelä on? (tested with GPT3.5 mode)
 ### Local Installation
 If you want to run the application in your local machine without using Docker, follw these steps:
 
@@ -48,7 +48,13 @@ cd thesis_auth_rag
 ```bash
 ./update_hf_token.sh hf_token
 ```
-3. Run Setup Script
+
+3. (Optional) if you want to use gpt3.5 mode for Finnish language testing, set openai api_key
+```bash
+./set_openai_api_key.sh openai_key
+```
+
+4. Run Setup Script
 
 On Mac
 ```bash
@@ -59,6 +65,10 @@ On Linux with GPU Support
 ./setup_and_run_GPU.sh
 ```
 
+To set up the project quickly, without reinstalling packages
+```bash
+./setup.sh
+```
 
 ### Docker Installation 
 Docker Installation with NVIDIA GPU Support(Running project on GPU)
@@ -78,6 +88,8 @@ sudo systemctl restart docker
 ```
 Verify your installation is correct by running `nvidia-smi`, ensure your CUDA version is up to date and your GPU is detected.
 
+To upgrade your Docker Engine on Ubuntu, please refer to the instructions
+https://docs.docker.com/engine/install/ubuntu/
 
 Steps:
 1. Clone this repository to your local machine and navigate to the project.
@@ -89,11 +101,16 @@ cd thesis_auth_rag
 ```bash
 ./update_hf_token.sh hf_token
 ```
-3. Run the following Docker command for GPU support:
+3. (Optional) if you want to use gpt3.5 mode for Finnish language testing, set openai api_key
+```bash
+./set_openai_api_key.sh openai_key
+```
+
+4. Run the following Docker command for GPU support:
 ```bash
 docker compose -f docker-compose.gpu.yaml up --build
 ```
-4. Access the application:
+5. Access the application:
 - Frontend: http://localhost:3000
 - Backend: http://localhost:8001
 

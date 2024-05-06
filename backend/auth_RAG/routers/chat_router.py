@@ -16,6 +16,8 @@ from auth_RAG.services.chunks_service import Chunk, ChunksService
 from collections import OrderedDict
 from auth_RAG.settings.settings import settings
 import markdown
+import yaml
+
 chat_router = APIRouter(prefix="/v1")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
@@ -172,3 +174,32 @@ def prompt_completion(
         "sources": completion.sources if body.include_sources else None
     }
 
+
+class LlmMode(BaseModel):
+    mode: str
+def edit_llm_mode(file_path, mode):
+    """Edit llm:mode setting in the YAML file."""
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+
+    # Find the line containing 'llm: mode'
+    for i, line in enumerate(lines):
+        if 'llm:' in line:
+            mode_line_index = i + 1
+            break
+
+    # Update the mode value
+    lines[mode_line_index] = f'  mode: {mode}\n'
+
+    # Write the modified lines back to the file
+    with open(file_path, 'w') as file:
+        file.writelines(lines)
+
+@chat_router.put("/edit-llm-mode/")
+async def edit_llm_mode_api(llm_mode: LlmMode):
+    file_path = '../backend/settings.yaml'
+    try:
+        edit_llm_mode(file_path, llm_mode.mode)
+        return {"message": f"llm:mode set to {llm_mode.mode}"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

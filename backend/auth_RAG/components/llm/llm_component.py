@@ -49,4 +49,20 @@ class LLMComponent:
                     completion_to_prompt=prompt_style.completion_to_prompt,
                     verbose=True,
                 )
+            case "openai":
 
+                try:
+                    # from llama_index.llms.openai_like import OpenAILike  # type: ignore
+                    from llama_index.llms.openai import OpenAI  # type: ignore
+
+                except ImportError as e:
+                    raise ImportError(
+                        "OpenAILike dependencies not found, install with `poetry install --extras llms-openai-like`"
+                    ) from e
+                prompt_style = get_prompt_style(settings.local.prompt_style)
+                openai_settings = settings.openai
+                self.llm = OpenAI(
+                    api_base='https://api.openai.com/v1',
+                    api_key=openai_settings.api_key,
+                    model=openai_settings.model,
+                )

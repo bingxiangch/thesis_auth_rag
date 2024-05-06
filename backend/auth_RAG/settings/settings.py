@@ -174,6 +174,19 @@ class DatabaseSettings(BaseModel):
     type: str
     url: str
 
+
+class OpenAISettings(BaseModel):
+    api_base: str = Field(
+        None,
+        description="Base URL of OpenAI API. Example: 'https://api.openai.com/v1'.",
+    )
+    api_key: str
+    model: str = Field(
+        "gpt-3.5-turbo",
+        description="OpenAI Model to use. Example: 'gpt-4'.",
+    )
+   
+
 class Settings(BaseModel):
     server: ServerSettings
     data: DataSettings
@@ -183,6 +196,7 @@ class Settings(BaseModel):
     vectorstore: VectorstoreSettings
     database: DatabaseSettings
     system_prompt: SystemPromptSettings
+    openai: OpenAISettings
 
     
 

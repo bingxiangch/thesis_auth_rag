@@ -76,6 +76,7 @@ RUN chmod +x /entrypoint.sh
 ENV PYTHONPATH="$PYTHONPATH:/auth_RAG/"
 RUN chmod -R ugo+rw models/
 ENTRYPOINT /entrypoint.sh python -m auth_RAG 
+            
 
 
 ENTRYPOINT ["/entrypoint.sh", "python", "-m", "auth_RAG"]

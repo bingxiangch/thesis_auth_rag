@@ -5,6 +5,7 @@ import { BASE_URL } from '../config';
 export const ChatView = () => {
   const { messages, loading, error, addMessage, setLoading, setError } = useChat();
   const [newMessage, setNewMessage] = useState('');
+  const [selectedMode, setSelectedMode] = useState('local'); // Default mode is OpenAI
 
   const handleSendMessage = async () => {
     if (newMessage.trim() !== '') {
@@ -42,7 +43,14 @@ export const ChatView = () => {
       handleSendMessage();
     }
   };
-
+  const handleModeChange = async (mode) => {
+    setSelectedMode(mode);
+    try {
+      await api.put(`${BASE_URL}edit-llm-mode/`, { mode });
+    } catch (error) {
+      console.error('Error setting LLM mode:', error);
+    }
+  };
   return (
     <main className="bg-slate-50 p-6 sm:p-10 flex-auto">
       <h1 className="text-xl font-bold text-left mb-4">Chat</h1>
@@ -57,6 +65,15 @@ export const ChatView = () => {
           ))}
         </div>
         <div className="flex items-center mt-4">
+        <span className="ml-2 text-gray-500">LLM Mode:</span>
+          <select
+            value={selectedMode}
+            onChange={(e) => handleModeChange(e.target.value)}
+            className="border rounded-r py-2 px-4 focus:outline-none"
+          >
+            <option value="local">Mistral-7b</option>
+            <option value="openai">GPT3.5</option>
+          </select>
           <input
             type="text"
             value={newMessage}

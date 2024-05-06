@@ -10,6 +10,7 @@ from llama_index.indices.postprocessor import MetadataReplacementPostProcessor
 from llama_index.llms import ChatMessage, MessageRole
 from llama_index.types import TokenGen
 from pydantic import BaseModel
+from auth_RAG.settings.settings import settings
 
 from auth_RAG.components.embedding.embedding_component import EmbeddingComponent
 from auth_RAG.components.llm.llm_component import LLMComponent
@@ -169,6 +170,9 @@ class ChatService:
             if chat_engine_input.system_message
             else None
         )
+        if settings().llm.mode == "openai":
+          system_prompt = f"{system_prompt}\nuser: {last_message}"
+          
         chat_history = (
             chat_engine_input.chat_history if chat_engine_input.chat_history else None
         )
