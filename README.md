@@ -49,11 +49,15 @@ cd thesis_auth_rag
 ./update_hf_token.sh hf_token
 ```
 
-3. (Optional) if you want to use gpt3.5 mode for Finnish language testing, set openai api_key
-```bash
-./set_openai_api_key.sh openai_key
-```
+3. (Optional) if you want to use gpt3.5 mode for Finnish language testing, Run the script `set_llm_mode_api_key.sh` with the following arguments:
 
+```bash
+./set_llm_mode_api_key.sh llm_mode [api_key]
+```
+llm_mode: Desired Language Model (LLM) mode. Possible values are local, openai.
+Presenting Mistral-7B and GPT3.5."
+
+api_key: (Optional) API key for accessing OpenAI's GPT-3.5 model.
 4. Run Setup Script
 
 On Mac
@@ -101,10 +105,14 @@ cd thesis_auth_rag
 ```bash
 ./update_hf_token.sh hf_token
 ```
-3. (Optional) if you want to use gpt3.5 mode for Finnish language testing, set openai api_key
+3. (Optional) if you want to use gpt3.5 mode for Finnish language testing, Run the script `set_llm_mode_api_key.sh` with the following arguments:
+
 ```bash
-./set_openai_api_key.sh openai_key
+./set_llm_mode_api_key.sh llm_mode [api_key]
 ```
+llm_mode: Desired Language Model (LLM) mode. Possible values are local, openai
+
+api_key: (Optional) API key for accessing OpenAI's GPT-3.5 model.
 
 4. Run the following Docker command for GPU support:
 ```bash
@@ -122,16 +130,26 @@ docker compose -f docker-compose.gpu.yaml up --build
 ```bash
 ./update_hf_token.sh hf_token
 ```
-2. Backend Setup, you need to navigate to project folder first(thesis_auth_rag):
+
+2. (Optional) if you want to use gpt3.5 mode for Finnish language testing, Run the script `set_llm_mode_api_key.sh` with the following arguments:
+
+```bash
+./set_llm_mode_api_key.sh llm_mode [api_key]
+```
+llm_mode: Desired Language Model (LLM) mode. Possible values are local, openai
+
+api_key: (Optional) API key for accessing OpenAI's GPT-3.5 model.
+
+3. Backend Setup, you need to navigate to project folder first(thesis_auth_rag):
 ```bash
 cd backend && python3.11 -m venv .venv && source .venv/bin/activate && \
 pip install --upgrade pip poetry && poetry install --with local && poetry install --extras chroma && ./scripts/setup.py
 ```
-3. (Optional)Llama-CPP Linux NVIDIA GPU support(Linux Only) 
+4. (Optional)Llama-CPP Linux NVIDIA GPU support(Linux Only) 
 ```bash
 CMAKE_ARGS='-DLLAMA_CUBLAS=on' poetry run pip install --force-reinstall --no-cache-dir llama-cpp-python
 ```
-4. Launch the Backend server:
+5. Launch the Backend server:
 ```bash
 poetry run python3.11 -m auth_RAG
 ```
