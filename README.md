@@ -33,7 +33,7 @@ can be found on /docs folder
      - what symptoms does Mark Lee have?
      - Provide Mark Lee's Family medical history
      - Provide the names of all patients that you can access
-     - mitä oireita Matti Virtasella on? (tested with GPT3.5 mode)
+     - mitä oireita Matti Virtasella ja Anna Mäkelä on? (tested with GPT3.5 mode)
 ### Local Installation
 If you want to run the application in your local machine without using Docker, follw these steps:
 
