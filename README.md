@@ -50,7 +50,6 @@ cd thesis_auth_rag
 ```
 
 3. (Optional) if you want to use gpt3.5 mode for Finnish language testing, Run the script `set_llm_mode_api_key.sh` with the following arguments:
-
 ```bash
 ./set_llm_mode_api_key.sh llm_mode [api_key]
 ```
@@ -58,6 +57,32 @@ llm_mode: Desired Language Model (LLM) mode. Possible values are local, openai.
 Presenting Mistral-7B and GPT3.5."
 
 api_key: (Optional) API key for accessing OpenAI's GPT-3.5 model.
+
+
+Or edit backend/settings.yaml file:
+```bash
+llm:
+  mode: openai
+openai:
+  api_key: api_key
+  model: gpt-3.5-turbo
+```
+
+To run the project using Azure OpenAI:
+Edit the backend/settings.yaml file:
+```bash
+llm:
+  mode: azureOpenai
+azure:
+  model: gpt-4
+  deployment_name: YOUR_DEPLOYMENT_NAME
+  api_key: API_KEY
+  azure_endpoint: YOUR_AZURE_OPENAI
+  api_version: '2024-02-15-preview'
+
+```
+
+
 4. Run Setup Script
 
 On Mac
@@ -105,14 +130,34 @@ cd thesis_auth_rag
 ```bash
 ./update_hf_token.sh hf_token
 ```
-3. (Optional) if you want to use gpt3.5 mode for Finnish language testing, Run the script `set_llm_mode_api_key.sh` with the following arguments:
-
+3. (Optional) (Optional) if you want to use gpt3.5 mode for Finnish language testing, Run the script `set_llm_mode_api_key.sh` with the following arguments:
 ```bash
 ./set_llm_mode_api_key.sh llm_mode [api_key]
 ```
 llm_mode: Desired Language Model (LLM) mode. Possible values are local, openai
 
-api_key: (Optional) API key for accessing OpenAI's GPT-3.5 model.
+Or edit backend/settings.yaml file:
+```bash
+llm:
+  mode: openai
+openai:
+  api_key: api_key
+  model: gpt-3.5-turbo
+```
+
+To run the project using Azure OpenAI:
+Edit the backend/settings.yaml file:
+```bash
+llm:
+  mode: azureOpenai
+azure:
+  model: gpt-4
+  deployment_name: YOUR_DEPLOYMENT_NAME
+  api_key: API_KEY
+  azure_endpoint: YOUR_AZURE_OPENAI
+  api_version: '2024-02-15-preview'
+
+```
 
 4. Run the following Docker command for GPU support:
 ```bash
@@ -131,15 +176,34 @@ docker compose -f docker-compose.gpu.yaml up --build
 ./update_hf_token.sh hf_token
 ```
 
-2. (Optional) if you want to use gpt3.5 mode for Finnish language testing, Run the script `set_llm_mode_api_key.sh` with the following arguments:
-
+2. (Optional) (Optional) if you want to use gpt3.5 mode for Finnish language testing, Run the script `set_llm_mode_api_key.sh` with the following arguments:
 ```bash
 ./set_llm_mode_api_key.sh llm_mode [api_key]
 ```
 llm_mode: Desired Language Model (LLM) mode. Possible values are local, openai
 
-api_key: (Optional) API key for accessing OpenAI's GPT-3.5 model.
+Or edit backend/settings.yaml file:
+```bash
+llm:
+  mode: openai
+openai:
+  api_key: api_key
+  model: gpt-3.5-turbo
+```
 
+To run the project using Azure OpenAI:
+Edit the backend/settings.yaml file:
+```bash
+llm:
+  mode: azureOpenai
+azure:
+  model: gpt-4
+  deployment_name: YOUR_DEPLOYMENT_NAME
+  api_key: API_KEY
+  azure_endpoint: YOUR_AZURE_OPENAI
+  api_version: '2024-02-15-preview'
+
+```
 3. Backend Setup, you need to navigate to project folder first(thesis_auth_rag):
 ```bash
 cd backend && python3.11 -m venv .venv && source .venv/bin/activate && \

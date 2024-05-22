@@ -19,12 +19,6 @@ database:
 system_prompt:
   default_query_system_prompt: >
     You can only answer questions about the provided context. If you know the answer but it is not based on the provided context, just state 'I don't know the answer from the context provided.'. Ensure that your answers to patient questions are personalized with the respective patient's name.
-llm:
-  mode: openai
-  # Should be matching the selected model
-  max_new_tokens: 512
-  context_window: 3900
-  tokenizer: mistralai/Mistral-7B-Instruct-v0.2
 
 embedding:
   # Should be matching the value above in most cases
@@ -33,6 +27,15 @@ embedding:
 
 vectorstore:
   database: chroma
+
+
+llm:
+  mode: local #support the three options: local, openai, and azureOpenai
+  # Should be matching the selected model
+  max_new_tokens: 512
+  context_window: 3900
+  tokenizer: mistralai/Mistral-7B-Instruct-v0.2
+
 
 local:
   prompt_style: "mistral"
@@ -44,3 +47,10 @@ local:
 openai:
   api_key: api_key
   model: gpt-3.5-turbo
+
+azure:
+  model: gpt-4
+  deployment_name: YOUR_DEPLOYMENT_NAME
+  api_key: API_KEY #api_key
+  azure_endpoint: YOUR_AZURE_OPENAI
+  api_version: '2024-02-15-preview'

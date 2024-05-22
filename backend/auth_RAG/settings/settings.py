@@ -81,7 +81,7 @@ class DataSettings(BaseModel):
 
 
 class LLMSettings(BaseModel):
-    mode: Literal["local", "openai", "openailike", "sagemaker", "mock", "ollama"]
+    mode: Literal["local", "openai", "openailike", "sagemaker", "mock", "ollama", "azureOpenai"]
     max_new_tokens: int = Field(
         256,
         description="The maximum number of token that the LLM is authorized to generate in one completion.",
@@ -186,7 +186,27 @@ class OpenAISettings(BaseModel):
         description="OpenAI Model to use. Example: 'gpt-4'.",
     )
    
-
+class AzureSettings(BaseModel):
+    model: str = Field(
+        "gpt-4",
+        description="Azure OpenAI Model to use. Example: 'gpt-4'."
+    )
+    deployment_name: str = Field(
+        ...,
+        description="Deployment name for the Azure OpenAI model."
+    )
+    api_key: str = Field(
+        ...,
+        description="API key for the Azure OpenAI service."
+    )
+    azure_endpoint: str = Field(
+        ...,
+        description="Endpoint URL for the Azure OpenAI service."
+    )
+    api_version: str = Field(
+        "2024-02-15-preview",
+        description="API version for the Azure OpenAI service."
+    )
 class Settings(BaseModel):
     server: ServerSettings
     data: DataSettings
@@ -197,7 +217,7 @@ class Settings(BaseModel):
     database: DatabaseSettings
     system_prompt: SystemPromptSettings
     openai: OpenAISettings
-
+    azure: AzureSettings
     
 
 

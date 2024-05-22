@@ -66,3 +66,23 @@ class LLMComponent:
                     api_key=openai_settings.api_key,
                     model=openai_settings.model,
                 )
+
+            case "azureOpenai":
+
+                try:
+                    # from llama_index.llms.openai_like import OpenAILike  # type: ignore
+                    from llama_index.llms.azure_openai import AzureOpenAI
+
+                except ImportError as e:
+                    raise ImportError(
+                        "azureOpenai dependencies not found, install with `pip install llama-index-llms-azure-openai`"
+                    ) from e
+                prompt_style = get_prompt_style(settings.local.prompt_style)
+                azure_openai_settings = settings.azure
+                self.llm = AzureOpenAI(
+                    model=azure_openai_settings.model,
+                    deployment_name=azure_openai_settings.deployment_name,
+                    api_key=azure_openai_settings.api_key,
+                    azure_endpoint=azure_openai_settings.azure_endpoint,
+                    api_version=azure_openai_settings.api_version,
+                )
