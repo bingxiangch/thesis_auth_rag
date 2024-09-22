@@ -1,8 +1,7 @@
 # Authorization-Based Data Access for RAG-Enabled Generative AI (On-Premises)
 
 ## Description
-This project introduces a demo application that showcases the integration of access control mechanisms and retrieval augmented generation (RAG) for resttricting data between different users
-
+This project introduces a demo application showcasing the integration of access control mechanisms with Retrieval-Augmented Generation (RAG) to restrict data access for different users. The work is part of the Secur-e-Health project, supported by Solita, and serves as a proof of concept system demonstrating secure, personalized access to sensitive information within healthcare settings.
 
 ## Usage Instructions
    <!-- - **Live Demo:** 
